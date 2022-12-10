@@ -1,16 +1,11 @@
-﻿// Домашняя работа. Задача 50. Напишите программу, которая на вход принимает
-// позиции элемента в двумерном массиве, и возвращает
-// значение этого элемента или же указание, что такого элемента нет.
+﻿// Домашняя работы. Задача 52. Задайте двумерный массив из целых чисел.
+// Найдите среднее арифметическое элементов в каждом столбце...
 // Например, задан массив:
 // 1 4 7 2
 // 5 9 2 3
 // 8 4 2 4
-// 17 -> такого числа в массиве нет
+// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
-Console.WriteLine("Введите номер строки элемента: ");
-int row = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите номер столбца элемента: ");
-int column = Convert.ToInt32(Console.ReadLine());
 
 int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 {
@@ -28,6 +23,7 @@ int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 }
 
 void PrintMatrix(int[,] matrix)
+
 {
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
@@ -41,15 +37,21 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
-void FindElementmatrix(int[,] matrix)
+void ArithmeticMean(int[,] matrix)
 {
-    if (row < matrix.GetLength(0) && column < matrix.GetLength(1))
-        Console.WriteLine($"Такой элемент есть, это ----> {matrix[row, column]}");
-    else
-        Console.WriteLine($"Строка: {row}, колонка {column} ----> в массиве отсутствует");
+    for (int j = 0; j < matrix.GetLength(1); j++)
+    {
+        double summaArithmeticMean = 0;
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+           summaArithmeticMean += matrix[i, j];
+        }
+double resultMathRound = Math.Round(summaArithmeticMean / matrix.GetLength(0), 2);
+Console.Write($"Среднее арифметическое столбца {j} ----> {resultMathRound} ");
+    }
 }
 
-int[,] creatMatrixRndInt = CreateMatrixRndInt(5, 7, 1, 10);
+int[,] creatMatrixRndInt = CreateMatrixRndInt(10, 13, 1, 5);
 PrintMatrix(creatMatrixRndInt);
-FindElementmatrix(creatMatrixRndInt);
 
+ArithmeticMean(creatMatrixRndInt);
